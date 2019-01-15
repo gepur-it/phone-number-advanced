@@ -42,11 +42,5 @@
     }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/home/programer/work/modules/phone-number"
-    }
-  ]
+  "prefer-stable": true
 }
