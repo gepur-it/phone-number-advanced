@@ -3,7 +3,7 @@
   "description": "Phone number type",
   "type": "symfony-bundle",
   "license": "MIT",
-  "version": "4.3.0",
+  "version": "5.0.0",
   "authors": [
     {
       "name": "Andrii Yakovlev",
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/gepur-it/phone-number-advanced",
   "require": {
     "php": "^7.3",
-    "gepur-it/phone-number": "^4.3",
+    "gepur-it/phone-number": "^4.3|^5.0",
     "ext-mbstring": "*"
   },
   "require-dev": {
