@@ -7,6 +7,7 @@
 namespace GepurIt\PhoneNumberAdvanced;
 
 use GepurIt\PhoneNumber\Constraints as Assert;
+use GepurIt\PhoneNumber\PhoneNumber;
 
 /**
  * advise : add JMS\Inline() to phone field annotation
@@ -14,7 +15,7 @@ use GepurIt\PhoneNumber\Constraints as Assert;
  * @package GepurIt\PhoneNumberAdvanced
  * @Assert\PhoneNumber()
  */
-class PhoneNumberAdvanced
+class PhoneNumberAdvanced extends PhoneNumber
 {
     const DIGITAL_REGEXP = "/[^\d]/";
 
