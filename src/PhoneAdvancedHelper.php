@@ -1357,10 +1357,10 @@ class PhoneAdvancedHelper
         foreach ([2,3,4] as $digits) {
             $searchStart = substr($phone, 0, $digits);
             if (
-                isset(self::PHONE_CODES_RU[$first][$digits]) &&
-                isset(self::PHONE_CODES_RU[$first][$digits][$searchStart])
+                isset(self::PHONE_COUNTRY_ISO_CODES[$first][$digits]) &&
+                isset(self::PHONE_COUNTRY_ISO_CODES[$first][$digits][$searchStart])
             ) {
-                return self::PHONE_CODES_RU[$first][$digits][$searchStart];
+                return self::PHONE_COUNTRY_ISO_CODES[$first][$digits][$searchStart];
             }
         }
 

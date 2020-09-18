@@ -3,7 +3,7 @@
   "description": "Phone number type",
   "type": "symfony-bundle",
   "license": "MIT",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "authors": [
     {
       "name": "Andrii Yakovlev",
