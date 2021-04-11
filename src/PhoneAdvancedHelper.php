@@ -3,6 +3,7 @@
  * @author: Marina Mileva m934222258@gmail.com
  * @since: 31.10.18
  */
+declare(strict_types=1);
 
 namespace GepurIt\PhoneNumberAdvanced;
 

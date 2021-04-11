@@ -3,6 +3,7 @@
  * @author: Marina Mileva <m934222258@gmail.com>
  * @since: 05.12.18
  */
+declare(strict_types=1);
 
 namespace GepurIt\PhoneNumberAdvanced\Tests;
 
@@ -10,6 +11,9 @@ use GepurIt\PhoneNumberAdvanced\PhoneAdvancedHelper;
 use GepurIt\PhoneNumberAdvanced\PhoneNumberAdvanced;
 use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ */
 class PhoneAdvancedHelperTest extends TestCase
 {
     /**

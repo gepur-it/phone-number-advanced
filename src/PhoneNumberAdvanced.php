@@ -3,6 +3,7 @@
  * @author : Marina Mileva m934222258@gmail.com
  * @since : 26.11.18
  */
+declare(strict_types=1);
 
 namespace GepurIt\PhoneNumberAdvanced;
 
@@ -24,10 +25,7 @@ class PhoneNumberAdvanced extends PhoneNumber
     const UA_REGEXP = '/(?<=^38|^8|^7|^6|^)(0\d{9})$/';
     const RU_REGEXP = '/(?<=^8|^7|^)([3-9]\d{9})$/';
 
-    /**
-     * @var string fullNumber
-     */
-    private $fullNumber;
+    private string $fullNumber;
 
     /**
      * PhoneNumber constructor.
@@ -36,6 +34,7 @@ class PhoneNumberAdvanced extends PhoneNumber
     public function __construct(string $number)
     {
         $number = preg_replace(self::DIGITAL_REGEXP, "", $number);
+        parent::__construct($number);
         $this->fullNumber = mb_strcut($number, 0, PhoneNumberAdvancedDoctrineType::TYPE_LENGTH);
         if (preg_match(self::UA_REGEXP, $this->fullNumber, $matches)) {
             $this->fullNumber = "38".$matches[1];
@@ -48,7 +47,7 @@ class PhoneNumberAdvanced extends PhoneNumber
     /**
      * @return string
      */
-    public function getNumber()
+    public function getNumber(): string
     {
         return $this->fullNumber;
     }

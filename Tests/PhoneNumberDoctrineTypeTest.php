@@ -3,6 +3,7 @@
  * @author: Marina Mileva <m934222258@gmail.com>
  * @since: 05.12.18
  */
+declare(strict_types=1);
 
 namespace GepurIt\PhoneNumberAdvanced\Tests;
 
@@ -12,6 +13,7 @@ use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
 use GepurIt\PhoneNumberAdvanced\PhoneNumberAdvanced;
 use GepurIt\PhoneNumberAdvanced\PhoneNumberAdvancedDoctrineType;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +30,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
     /**
      * @throws DBALException
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         Type::addType(PhoneNumberAdvancedDoctrineType::TYPE_NAME, PhoneNumberAdvancedDoctrineType::class);
     }
@@ -45,7 +47,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
 
     public function testGetSQLDeclaration()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->assertSame('VARCHAR(20)', $this->type->getSQLDeclaration([], $platform));
@@ -61,7 +63,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
      */
     public function testConvertToDatabaseValueWithNull()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->assertNull($this->type->convertToDatabaseValue(null, $platform));
@@ -72,7 +74,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
      */
     public function testConvertToDatabaseValueException()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->expectException(ConversionException::class);
@@ -85,7 +87,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
      */
     public function testConvertToDatabaseValue()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $result = $this->type->convertToDatabaseValue(new PhoneNumberAdvanced('380971234567'), $platform);
@@ -95,7 +97,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
 
     public function testConvertToPHPValueWithNull()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->assertNull($this->type->convertToPHPValue(null, $platform));
@@ -103,7 +105,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
 
     public function testConvertToPHPValueWithNullEmail()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->assertInstanceOf(
@@ -114,7 +116,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
 
     public function testConvertToPHPValue()
     {
-        /**@var AbstractPlatform|\PHPUnit_Framework_MockObject_MockObject $platform */
+        /**@var AbstractPlatform|MockObject $platform */
         $platform = $this->createMock(AbstractPlatform::class);
 
         $this->assertInstanceOf(PhoneNumberAdvanced::class, $this->type->convertToPHPValue('380971234567', $platform));
@@ -123,7 +125,7 @@ class PhoneNumberDoctrineTypeTest extends TestCase
     /**
      * @throws DBALException
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->type = Type::getType(PhoneNumberAdvancedDoctrineType::TYPE_NAME);
     }

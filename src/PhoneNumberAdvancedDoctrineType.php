@@ -3,6 +3,7 @@
  * @author: Marina Mileva m934222258@gmail.com
  * @since: 26.11.18
  */
+declare(strict_types=1);
 
 namespace GepurIt\PhoneNumberAdvanced;
 
@@ -24,31 +25,27 @@ class PhoneNumberAdvancedDoctrineType extends Type
     /**
      * @param $value
      * @param AbstractPlatform $platform
-     * @return mixed|null|string
+     * @return null|string
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (null === $value) {
             return null;
         }
-
         if (!$value instanceof PhoneNumberAdvanced) {
             throw new ConversionException('Expected '. PhoneNumberAdvanced::class.', got ' . gettype($value));
         }
-
-        /** @var PhoneNumberAdvanced $value */
-        $stringToSave = $value->getNumber();
-
-        return $stringToSave;
+        return $value->getNumber();
     }
 
     /**
      * @param mixed $value
      * @param AbstractPlatform $platform
-     * @return PhoneNumberAdvanced
+     * @return PhoneNumberAdvanced|null
+     * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?PhoneNumberAdvanced
     {
         if (null === $value || $value instanceof PhoneNumberAdvanced) {
             return $value;
@@ -67,12 +64,12 @@ class PhoneNumberAdvancedDoctrineType extends Type
     /**
      * Gets the SQL declaration snippet for a field of this type.
      *
-     * @param array                                     $fieldDeclaration The field declaration.
-     * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform         The currently used database platform.
+     * @param array            $column    The field declaration.
+     * @param AbstractPlatform $platform  The currently used database platform.
      *
      * @return string
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'VARCHAR('.self::TYPE_LENGTH.')';
     }
@@ -92,7 +89,7 @@ class PhoneNumberAdvancedDoctrineType extends Type
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return self::TYPE_NAME;
     }
